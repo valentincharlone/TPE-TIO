@@ -1,0 +1,100 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package trabajotmc;
+import java.io.BufferedReader; 
+import java.io.IOException;
+import java.io.InputStreamReader; 
+import java.util.Scanner;
+/**
+ *
+ * @author Rossi
+ */
+public class TrabajoTMC {
+
+    public static float capacidad = 0;
+
+    public static void main(String[] args) { 
+        int parte = 0;
+        Scanner scan = new Scanner(System.in);
+        System.out.println("ingrese que parte desea resolver 1 o 2 " ); 
+        parte = scan.nextInt();
+        if (parte==1){ 
+            programParte1();
+        } else { 
+            programParte2();
+        }
+    }
+    
+    public static void programParte1 (){ 
+        Scanner scan = new Scanner(System.in); 
+        float deltaTiempo,alturaInicialDeAgua,entrada,salida,area,alturaTanque;
+        System.out.println("Ingrese delta tiempo");
+        deltaTiempo = scan.nextFloat();
+        System.out.println("Ingrese altura inicial del agua"); 
+        alturaInicialDeAgua = scan.nextFloat();
+        System.out.println("Ingrese entrada de agua"); 
+        entrada = scan.nextFloat();
+        System.out.println("Ingrese salida de agua"); 
+        salida = scan.nextFloat();
+        System.out.println("Ingrese area del tanque"); 
+        area = scan.nextFloat();
+        System.out.println("Ingrese altura del tanque"); 
+        alturaTanque = scan.nextFloat(); 
+        if(((entrada<=salida)&&(alturaInicialDeAgua==alturaTanque)) || (entrada>salida)){
+            float[] arr = new float[4];
+            float[] imprimir = new float[2]; 
+            float tiempoVaciado=0; 
+            float iteraciones=0;
+            arr = calcularTiempoDeLlenado(area,entrada,salida,alturaInicialDeAgua,alturaTanque,deltaTiempo); 
+            System.out.println("tiempo de llenado " + arr[1] + " segundos en "+ arr[3] +" iteraciones"); 
+            System.out.println("primer tiempo en que el agua es >= C/2 " + arr[0] + " segundos");
+            imprimir = calcularTiempoDeVaciado(area,salida,arr[2],alturaTanque,deltaTiempo); 
+            tiempoVaciado=imprimir[0]+arr[1]; 
+            iteraciones=arr[3]+imprimir[1];
+            System.out.println("tiempo de vaciado " + tiempoVaciado + " segundos en "+iteraciones+" iteraciones");
+        } else { 
+            System.out.println("los datos ingresados son absurdos");
+        }
+    }
+    
+    public static void programParte2(){ 
+        Scanner scan = new Scanner(System.in); 
+        int inciso; 
+        float deltaTiempo,alturaInicialDeAgua,entrada,constante,constante1,constante2,area,alturaTanque;
+        System.out.println("Ingrese delta tiempo");
+        deltaTiempo = scan.nextFloat();
+        System.out.println("Ingrese altura inicial del agua"); 
+        alturaInicialDeAgua = scan.nextFloat();
+        System.out.println("Ingrese entrada de agua"); 
+        entrada = scan.nextFloat();
+        System.out.println("Ingrese la constante K "); 
+        constante = scan.nextFloat();
+        System.out.println("Ingrese la constante W "); 
+        constante1 = scan.nextFloat();
+        System.out.println("Ingrese la constante G "); 
+        constante2 = scan.nextFloat();
+        System.out.println("Ingrese area del tanque"); 
+        area = scan.nextFloat();
+        System.out.println("Ingrese altura del tanque"); 
+        alturaTanque = scan.nextFloat();  
+        System.out.println("ingrese que inciso desea resolver K=1 , W=2 o G=3"); 
+        inciso = scan.nextInt(); 
+        if(((entrada==0)&&(alturaInicialDeAgua==alturaTanque)) || (entrada>0)){
+            switch (inciso){ 
+                case 1: 
+                    imprimirIncisoA(constante,area,entrada,alturaInicialDeAgua,alturaTanque,deltaTiempo); 
+                    break;
+                case 2: 
+                    imprimirIncisoB(constante1,area,entrada,alturaInicialDeAgua,alturaTanque,deltaTiempo);               
+                    break;
+                case 3: 
+                    imprimirIncisoC(constante2,area,entrada,alturaInicialDeAgua,alturaTanque,deltaTiempo); 
+                    break;
+            } 
+        } else { 
+            System.out.println("los datos ingresados son absurdos");
+        }   
+    }
