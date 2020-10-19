@@ -98,3 +98,7 @@ public class TrabajoTMC {
             System.out.println("los datos ingresados son absurdos");
         }   
     }
+public static void imprimirIncisoA(float constante,float area,float entrada,
+            float alturaInicialDeAgua,float alturaTanque,float deltaTiempo){ 
+        float[] incisoC = new float[2]; 
+        float[] arr = new float[3]; 
