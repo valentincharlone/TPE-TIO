@@ -136,4 +136,8 @@ float tiempoVaciado = arr[1]+incisoC[0];
             tiempo += deltaTiempo;
             alturaAgua = alturaAgua+(0-salida)*deltaTiempo/area; 
             iteraciones++;
+        } 
+        if(alturaAgua<0){ 
+           tiempo-=deltaTiempo; 
+            iteraciones--;
      
