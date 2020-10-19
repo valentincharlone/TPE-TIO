@@ -122,3 +122,18 @@ float tiempoVaciado = arr[1]+incisoC[0];
         float tiempoVaciado = arr[1]+incisoC[0]; 
         float iteraciones = arr[3]+incisoC[1];
         System.out.println("tiempo de vaciado " + tiempoVaciado + " segundos en "+iteraciones+ " iteraciones"); 
+
+ //parte 1 inciso b
+    public static float[] calcularTiempoDeVaciado(float area, float salida, float columnaAguaInicial, 
+            float alturaTanque, float deltaTiempo) { // 
+        float alturaAgua,tiempo=0; 
+        float[] arr = new float[2]; 
+        int iteraciones=0;
+        tiempo += deltaTiempo; //revisar la variable tiempo !!!!!!!!
+        alturaAgua = columnaAguaInicial+(0-salida)*deltaTiempo/area; 
+        iteraciones++;
+        while (alturaAgua > 0) { 
+            tiempo += deltaTiempo;
+            alturaAgua = alturaAgua+(0-salida)*deltaTiempo/area; 
+            iteraciones++;
+     
