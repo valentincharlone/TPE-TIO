@@ -109,3 +109,9 @@ arr = calcularTiempoDeLlenadoSalida1(constante,area,entrada,alturaInicialDeAgua,
 float tiempoVaciado = arr[1]+incisoC[0]; 
         float iteraciones = arr[3]+incisoC[1];
         System.out.println("tiempo de vaciado " + incisoC[0] + " segundos en "+incisoC[1]+ " iteraciones");
+    }  
+    
+     public static void imprimirIncisoC(float constante,float area,float entrada,
+            float alturaInicialDeAgua,float alturaTanque,float deltaTiempo){ 
+        float[] incisoC = new float[2]; 
+        float[] arr = new float[3]; 
