@@ -114,4 +114,8 @@ float tiempoVaciado = arr[1]+incisoC[0];
      public static void imprimirIncisoC(float constante,float area,float entrada,
             float alturaInicialDeAgua,float alturaTanque,float deltaTiempo){ 
         float[] incisoC = new float[2]; 
-        float[] arr = new float[3]; 
+        float[] arr = new float[3];
+        arr = calcularTiempoDeLlenadoSalida3(constante,area,entrada,alturaInicialDeAgua,alturaTanque,deltaTiempo);
+        incisoC = calcularTiempoDeVaciadoSalida3(constante,area,arr[2],alturaTanque,deltaTiempo);
+        System.out.println("tiempo de llenado " + arr[1] + " segundos en "+ arr[3]+ " iteraciones"); 
+        System.out.println("primer tiempo en que el agua es >= C/2 " + arr[0] + " segundos"); 
