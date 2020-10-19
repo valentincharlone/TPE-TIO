@@ -106,3 +106,6 @@ arr = calcularTiempoDeLlenadoSalida1(constante,area,entrada,alturaInicialDeAgua,
         incisoC = calcularTiempoDeVaciado1(constante,area,arr[2],alturaTanque,deltaTiempo);
         System.out.println("tiempo de llenado " + arr[1] + " segundos en "+ arr[3]+ " iteraciones"); 
         System.out.println("primer tiempo en que el agua es >= C/2 " + arr[0] + " segundos"); 
+float tiempoVaciado = arr[1]+incisoC[0]; 
+        float iteraciones = arr[3]+incisoC[1];
+        System.out.println("tiempo de vaciado " + incisoC[0] + " segundos en "+incisoC[1]+ " iteraciones");
