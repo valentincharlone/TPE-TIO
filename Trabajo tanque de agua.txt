@@ -300,4 +300,27 @@ public static float[] calcularTiempoDeLlenadoSalida1(float constante,float area,
         }     
     return arreglo;
     } 
+
+//parte 2 inciso c resuelve II
+    public static float[] calcularTiempoDeVaciadoSalida3(float constante,float area, float columnaAguaInicial, 
+            float alturaTanque, float deltaTiempo) {
+        float alturaAgua,salida,tiempo=0; 
+        float[] arr = new float[2]; 
+        int iteraciones=0; 
+        double alturaMinima=0.0000000009;
+        salida=constante/area*columnaAguaInicial;
+        alturaAgua = columnaAguaInicial+(0-salida)*deltaTiempo/area;
+        tiempo += deltaTiempo;
+        iteraciones++;
+        while (alturaAgua > alturaMinima) { 
+            salida=constante/area*alturaAgua;
+            alturaAgua = alturaAgua+(0-salida)*deltaTiempo/area;
+            tiempo += deltaTiempo; 
+            iteraciones++;
+        } 
+        arr[0]=tiempo; 
+        arr[1]=iteraciones;
+        return arr;
+    }    
+}
      
