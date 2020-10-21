@@ -129,6 +129,31 @@ float tiempoVaciado = arr[1]+incisoC[0];
          float alturaAgua=0, arreglo[],tiempo=0;  
          int iteraciones=0;
          boolean llego=false;}
+        arreglo = new float[4]; 
+        if(columnaAguaInicial<alturaTanque){
+            tiempo = deltaTiempo; 
+            alturaAgua = columnaAguaInicial+(entrada-salida)*deltaTiempo/area; 
+            iteraciones++;
+            while (alturaAgua < alturaTanque) { //si me paso restarle el ultimo valor, agregarle la altura final del agua al arreglo
+                if ((alturaAgua >= (alturaTanque/2)) && (!llego)) {
+                    arreglo[0] = tiempo; 
+                    llego=true;
+                } 
+                iteraciones++;
+                tiempo += deltaTiempo;
+                alturaAgua = alturaAgua+(entrada-salida)*deltaTiempo/area;
+            }  
+            arreglo[1]=tiempo;
+            arreglo[2]=alturaAgua; //para darsela a tiempoDeVaciado!!! 
+            arreglo[3]= iteraciones;
+        }else{ 
+            arreglo[1]=tiempo;
+            arreglo[2]=alturaTanque; //para darsela a tiempoDeVaciado!!! 
+            arreglo[3]= iteraciones;
+            
+        return arreglo;
+    }
+    }
 
  //parte 1 inciso b
     public static float[] calcularTiempoDeVaciado(float area, float salida, float columnaAguaInicial, 
