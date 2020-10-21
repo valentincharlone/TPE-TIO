@@ -165,4 +165,139 @@ public static void imprimirIncisoB(float constante,float area,float entrada,
         iteraciones=incisoC[1];
         System.out.println("tiempo de vaciado " + tiempoVaciado + " segundos en "+iteraciones+ " iteraciones");
     }  
+
+public static float[] calcularTiempoDeLlenadoSalida1(float constante,float area, float entrada, 
+            float columnaAguaInicial, float alturaTanque, float deltaTiempo) {
+        float alturaAgua,salida,arreglo[],tiempo=0; 
+        int iteraciones=0;
+        arreglo = new float[4]; 
+        if (columnaAguaInicial<alturaTanque){
+            salida=constante*deltaTiempo;
+            alturaAgua = columnaAguaInicial+(entrada-salida)*deltaTiempo/area;
+            tiempo += deltaTiempo; 
+            iteraciones++;
+            while (alturaAgua < alturaTanque) { 
+                if (alturaAgua >= alturaTanque / 2) {
+                    arreglo[0] = tiempo;
+                }
+            tiempo += deltaTiempo;
+            salida=constante*tiempo;
+            alturaAgua = columnaAguaInicial+(entrada-salida)*deltaTiempo/area; 
+            iteraciones++; 
+            } 
+            arreglo[1]=tiempo; 
+            arreglo[2]=alturaAgua; 
+            arreglo[3]=iteraciones;
+        } else{ 
+        arreglo[1]=tiempo; 
+        arreglo[2]=columnaAguaInicial; 
+        arreglo[3]=iteraciones; 
+        }
+        return arreglo;          
+    } 
+    //parte 2 inciso a, resuleve II
+    public static float[] calcularTiempoDeVaciado1(float constante,float area, float columnaAguaInicial, 
+            float alturaTanque, float deltaTiempo) {
+        float alturaAgua,salida,tiempo=0;
+        float[] arr = new float[2];
+        int iteraciones=0; 
+        salida=constante*deltaTiempo;
+        alturaAgua = columnaAguaInicial+(0-salida)*deltaTiempo/area;
+        tiempo += deltaTiempo; 
+        iteraciones++;
+        while (alturaAgua>0) { 
+            tiempo += deltaTiempo;
+            salida=constante*tiempo;
+            alturaAgua = alturaAgua+(0-salida)*deltaTiempo/area;
+            iteraciones++;
+        } 
+        arr[0]=tiempo; 
+        arr[1]=iteraciones;
+        return arr;
+    }  
+    //parte 2 inciso b, resuelve I y III
+    public static float[] calcularTiempoDeLlenadoSalida2(float constante,float area, float entrada, 
+            float columnaAguaInicial, float alturaTanque, float deltaTiempo) {
+        float alturaAgua,salida,arreglo[],tiempo=0; 
+        int iteraciones=0; 
+        boolean llego=false;
+        arreglo = new float[4]; 
+        if (columnaAguaInicial<alturaTanque){
+            salida=constante*deltaTiempo*deltaTiempo;
+            alturaAgua = columnaAguaInicial+(entrada-salida)*deltaTiempo/area;
+            tiempo += deltaTiempo; 
+            iteraciones++;
+            while (alturaAgua < alturaTanque) { 
+                if ((alturaAgua >= alturaTanque/2) && (!llego)) {
+                    arreglo[0] = tiempo; 
+                    llego=true;
+                } 
+                tiempo += deltaTiempo;
+                salida=constante*tiempo*tiempo; 
+                alturaAgua = alturaAgua+(entrada-salida)*deltaTiempo/area; 
+                iteraciones++;
+            } 
+            if(alturaAgua>alturaTanque){ 
+                alturaAgua=alturaTanque;
+                }
+            arreglo[1]=tiempo; 
+            arreglo[2]=alturaAgua; 
+            arreglo[3]= iteraciones; 
+        } else { 
+            arreglo[1]=tiempo; 
+            arreglo[2]=columnaAguaInicial; 
+            arreglo[3]= iteraciones;
+        }
+        return arreglo;
+    } 
+    //parte 2 inciso b resuelve II
+    public static float[] calcularTiempoDeVaciadoSalida2(float constante,float area, float columnaAguaInicial, 
+            float alturaTanque, float deltaTiempo) {
+        float alturaAgua=0,salida,tiempo=0; 
+        float[] arr = new float[2]; 
+        int iteraciones=0;
+        salida=constante*deltaTiempo*deltaTiempo;
+        alturaAgua = columnaAguaInicial+(0-salida)*deltaTiempo/area;
+        tiempo += deltaTiempo;
+        iteraciones++;
+        while (alturaAgua > 0) { 
+            tiempo += deltaTiempo; 
+            salida=constante*tiempo*tiempo;
+            alturaAgua = alturaAgua+(0-salida)*deltaTiempo/area;
+            iteraciones++;
+        } 
+        arr[0]= tiempo;
+        arr[1]= iteraciones;
+        return arr;
+    }  
+    // parte 2 inciso c resuelve I y III
+    public static float[] calcularTiempoDeLlenadoSalida3(float constante,float area, float entrada, 
+            float columnaAguaInicial, float alturaTanque, float deltaTiempo) {
+        float alturaAgua,salida,arreglo[],tiempo=0;   
+        int iteraciones=0;
+        arreglo = new float[4]; 
+        if(columnaAguaInicial<alturaTanque){
+            salida=constante/area*columnaAguaInicial;
+            alturaAgua = columnaAguaInicial+(entrada-salida)*deltaTiempo/area;
+            tiempo += deltaTiempo; 
+            iteraciones++;
+            while (alturaAgua < alturaTanque) { 
+                if (alturaAgua >= alturaTanque/2) {
+                    arreglo[0] = deltaTiempo;
+                }
+                tiempo += deltaTiempo;
+                salida=constante/area*alturaAgua; 
+                alturaAgua = alturaAgua+(entrada-salida)*deltaTiempo/area;
+                iteraciones++;
+            } 
+            arreglo[1]=tiempo; 
+            arreglo[2]=alturaAgua; 
+            arreglo[3]=iteraciones; 
+        } else{ 
+            arreglo[1]=tiempo; 
+            arreglo[2]=columnaAguaInicial; 
+            arreglo[3]=iteraciones; 
+        }     
+    return arreglo;
+    } 
      
