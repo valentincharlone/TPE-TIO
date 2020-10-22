@@ -1,1 +1,1 @@
-carpetaIgnorada/
+ignorar/*
